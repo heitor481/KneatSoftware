@@ -1,12 +1,17 @@
-﻿using System;
+﻿using KneatSoftware.HttpRequest;
+using System;
+using System.Threading.Tasks;
 
 namespace KneatSoftware
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var request = new RequestToSwapiApi();
+            var requestResult = await request.ReturnTheStarShipModels();
+            Console.WriteLine(requestResult);
+            Console.ReadKey();
         }
     }
 }
