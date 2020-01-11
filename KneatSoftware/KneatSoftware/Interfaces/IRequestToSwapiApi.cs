@@ -8,6 +8,6 @@ namespace KneatSoftware.Interfaces
 {
     public interface IRequestToSwapiApi
     {
-        Task<object> ReturnTheStarShipModels();
+        Task<RootObject> ReturnTheStarShipModels();
     }
 }

@@ -1,5 +1,8 @@
 ﻿using KneatSoftware.HttpRequest;
+using KneatSoftware.Models;
+using Newtonsoft.Json;
 using System;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace KneatSoftware
@@ -10,7 +13,7 @@ namespace KneatSoftware
         {
             var request = new RequestToSwapiApi();
             var requestResult = await request.ReturnTheStarShipModels();
-            Console.WriteLine(requestResult);
+            Console.WriteLine("Test");
             Console.ReadKey();
         }
     }

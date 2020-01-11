@@ -1,4 +1,6 @@
 ﻿using KneatSoftware.Interfaces;
+using KneatSoftware.Models;
+using Newtonsoft.Json;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -6,7 +8,9 @@ namespace KneatSoftware.HttpRequest
 {
     public class RequestToSwapiApi : IRequestToSwapiApi
     {
-        public string ApiURL
+        private string Json;
+
+        private string ApiURL
         {
             get
             {
@@ -14,10 +18,25 @@ namespace KneatSoftware.HttpRequest
             }
         }
 
-        public async Task<object> ReturnTheStarShipModels()
+        public async Task<RootObject> ReturnTheStarShipModels()
         {
             var request = new HttpClient();
-            return await request.GetStringAsync(this.ApiURL);
+            this.Json = await request.GetStringAsync(this.ApiURL);
+            var rootObject = JsonConvert.DeserializeObject<RootObject>(this.Json);
+
+            while (rootObject.Next != null)
+            {
+                this.Json = await request.GetStringAsync(rootObject.Next);
+                var newDeserializeObject = JsonConvert.DeserializeObject<RootObject>(this.Json);
+                if (newDeserializeObject.Results != null)
+                {
+                    rootObject.Results.AddRange(newDeserializeObject.Results);
+                }
+
+                rootObject.Next = newDeserializeObject.Next;
+            }
+
+            return rootObject;
         }
     }
 }
