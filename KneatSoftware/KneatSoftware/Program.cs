@@ -10,20 +10,27 @@ namespace KneatSoftware
         static async Task Main(string[] args)
         {
             Console.WriteLine("Enter the total of Megalights: ");
-            var valuePassed = Console.ReadLine();
-            var convertedValuePassed = Convert.ToInt32(valuePassed);
-            var request = new RequestToSwapiApi();
-            var requestResult = await request.ReturnTheStarShipModels();
-            var swap = new SwapiApiResponse();
-            var calculeDone = swap.StartCalculateTotalOfStops(requestResult.Results, convertedValuePassed);
+            var valueTyped = Console.ReadLine();
+            double valueConverted;
+            var value = double.TryParse(valueTyped, out valueConverted);
 
-            foreach (var test in calculeDone)
+            if (value)
             {
-                Console.WriteLine($"StarShip: {test.Key} Stops: {test.Value}");
-            }
+                var convertedValuePassed = Convert.ToDouble(valueConverted);
+                var request = new RequestToSwapiApi();
+                var requestResult = await request.ReturnTheStarShipModels();
+                var swap = new SwapiApiResponse();
+                var calculeDone = swap.StartCalculateTotalOfStops(requestResult.Results, convertedValuePassed);
 
+                foreach (var test in calculeDone)
+                {
+                    Console.WriteLine($"StarShips: {test.Key}, TotalStopsForResupply: {test.Value}");
+                }
+
+
+                Console.ReadKey();
+            }
             
-            Console.ReadKey();
         }
     }
 }

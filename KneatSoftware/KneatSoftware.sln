@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KneatSoftware", "KneatSoftware\KneatSoftware.csproj", "{C97B8068-495C-4627-8DCF-E0E94B7E1449}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KneatSoftware", "KneatSoftware\KneatSoftware.csproj", "{C97B8068-495C-4627-8DCF-E0E94B7E1449}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KneatSoftware.Tests", "KneatSoftware.Tests\KneatSoftware.Tests.csproj", "{01C21F2F-7AC2-4000-99DF-555C21381525}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{C97B8068-495C-4627-8DCF-E0E94B7E1449}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C97B8068-495C-4627-8DCF-E0E94B7E1449}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C97B8068-495C-4627-8DCF-E0E94B7E1449}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01C21F2F-7AC2-4000-99DF-555C21381525}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01C21F2F-7AC2-4000-99DF-555C21381525}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01C21F2F-7AC2-4000-99DF-555C21381525}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01C21F2F-7AC2-4000-99DF-555C21381525}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

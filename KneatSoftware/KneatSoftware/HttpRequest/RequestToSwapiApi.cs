@@ -24,6 +24,7 @@ namespace KneatSoftware.HttpRequest
             this.Json = await request.GetStringAsync(this.ApiURL);
             var rootObject = JsonConvert.DeserializeObject<RootObject>(this.Json);
 
+            // I´m doing that while because the results comming from the API are paged, so I need to catch the next URL to grab the next starships
             while (rootObject.Next != null)
             {
                 this.Json = await request.GetStringAsync(rootObject.Next);
