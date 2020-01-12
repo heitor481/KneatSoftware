@@ -24,7 +24,7 @@ namespace KneatSoftware
 
                 foreach (var test in calculeDone)
                 {
-                    Console.WriteLine($"StarShips: {test.Key}, TotalStopsForResupply: {test.Value}");
+                    Console.WriteLine($"{test.Key}: {test.Value}");
                 }
 
 

@@ -80,29 +80,37 @@ namespace KneatSoftware.Models
 
         public double CalculateTotalOfHours(string consumables)
         {
-            var consumablesInt = Convert.ToInt32(consumables.Remove(1, consumables.Length - 1));
-
-            if (consumables.Contains("day"))
+            try
             {
-                this.HoursCalculated = consumablesInt * this.HoursPerDay;
-            }
+                var consumablesInt = Convert.ToInt32(consumables.Remove(1, consumables.Length - 1));
 
-            if (consumables.Contains("week"))
+                if (consumables.Contains("day"))
+                {
+                    this.HoursCalculated = consumablesInt * this.HoursPerDay;
+                }
+
+                if (consumables.Contains("week"))
+                {
+                    this.HoursCalculated = consumablesInt * this.HoursPerWeek;
+                }
+
+                if (consumables.Contains("month"))
+                {
+                    this.HoursCalculated = consumablesInt * this.HoursPerMonth;
+                }
+
+                if (consumables.Contains("year"))
+                {
+                    this.HoursCalculated = consumablesInt * this.HoursPerYear;
+                }
+
+                return this.HoursCalculated;
+            }
+            catch (Exception ex)
             {
-                this.HoursCalculated = consumablesInt * this.HoursPerWeek;
+                throw new Exception(ex.Message);
             }
-
-            if (consumables.Contains("month"))
-            {
-                this.HoursCalculated = consumablesInt * this.HoursPerMonth;
-            }
-
-            if (consumables.Contains("year"))
-            {
-                this.HoursCalculated = consumablesInt * this.HoursPerYear;
-            }
-
-            return this.HoursCalculated;
+            
         }
     }
 }
