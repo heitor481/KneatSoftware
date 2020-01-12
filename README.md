@@ -34,9 +34,9 @@ Inside of an loop I check if the MGLT * Total of hours is less or equal to the M
 
 ## Tips
 
-If you type something that is not a number, that programm will stop automatically and will not continue running.
+If you type something that is not a number, that program will stop automatically and will not continue running.
 
-There are a few starships that is not returng the fields MGLT or Consumables. So, when it´s not returned thoses values, I´m simply returning the name of the starships
+There are a few starships that is not returning the fields MGLT or Consumables. So, when it´s not returned those values, I´m simply returning the name of the starship
 and 0 as total of stops. Without those values, I can make the calculation.
 
 ### Plugins Used
