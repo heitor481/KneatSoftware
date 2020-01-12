@@ -7,6 +7,6 @@ namespace KneatSoftware.Interfaces
 {
     public interface ISwapiApiResponse
     {
-        void StartCalculateTotalOfStops(IList<SwapiApiResponse> swapiApiResponses, int megalightsTyped);
+        Dictionary<string, int> StartCalculateTotalOfStops(IList<SwapiApiResponse> swapiApiResponses, int megalightsTyped);
     }
 }

@@ -15,9 +15,14 @@ namespace KneatSoftware
             var request = new RequestToSwapiApi();
             var requestResult = await request.ReturnTheStarShipModels();
             var swap = new SwapiApiResponse();
-            swap.StartCalculateTotalOfStops(requestResult.Results, convertedValuePassed);
+            var calculeDone = swap.StartCalculateTotalOfStops(requestResult.Results, convertedValuePassed);
 
-            Console.WriteLine("Test");
+            foreach (var test in calculeDone)
+            {
+                Console.WriteLine($"StarShip: {test.Key} Stops: {test.Value}");
+            }
+
+            
             Console.ReadKey();
         }
     }

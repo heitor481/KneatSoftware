@@ -1,7 +1,6 @@
 ﻿using KneatSoftware.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace KneatSoftware.Models
 {
@@ -12,6 +11,7 @@ namespace KneatSoftware.Models
         private readonly double HoursPerMonth = 730.001;
         private readonly double HoursPerYear = 8760;
         private double HoursCalculated = 0;
+        private Dictionary<string, int> CollectionOfStarShipsWithStops = new Dictionary<string, int>();
 
         public SwapiApiResponse()
         {
@@ -37,33 +37,38 @@ namespace KneatSoftware.Models
         public DateTime Edited { get; set; }
         public string Url { get; set; }
 
-        public void StartCalculateTotalOfStops(IList<SwapiApiResponse> swapiApiResponses, int megalightsTyped)
+        public Dictionary<string, int> StartCalculateTotalOfStops(IList<SwapiApiResponse> swapiApiResponses, int megalightsTyped)
         {
-            for (int i = 0; i <= swapiApiResponses.Count; i++)
+            for (int i = 0; i <= swapiApiResponses.Count -1; i++)
             {
                 if (swapiApiResponses[i].MGLT == "unknown" | swapiApiResponses[i].Consumables == "unknown")
                 {
+                    this.CollectionOfStarShipsWithStops.Add(swapiApiResponses[i].Name, 0);
+                    continue;
                 }
 
                 var mglt = Convert.ToInt32(swapiApiResponses[i].MGLT);
                 var consumables = swapiApiResponses[i].Consumables;
                 double hoursCalculated = CalculateTotalOfHours(consumables);
                 int stops = CalculateTotalOfStops(hoursCalculated, mglt, megalightsTyped);
+                this.CollectionOfStarShipsWithStops.Add(swapiApiResponses[i].Name, stops);
             }
+
+            return this.CollectionOfStarShipsWithStops;
         }
 
         public int CalculateTotalOfStops(double hours, int mglt, int megalightsTyped)
         {
-            int totalOfStopsForResupply = 0;
+            int totalStopsForResupply = 0;
             double calc = mglt * hours;
 
             while (calc <= megalightsTyped)
             {
                 calc += mglt * hours;
-                totalOfStopsForResupply += 1;
+                totalStopsForResupply += 1;
             }
 
-            return totalOfStopsForResupply;
+            return totalStopsForResupply;
         }
 
         public double CalculateTotalOfHours(string consumables)
